@@ -11,6 +11,13 @@
 
     <url>http://maven.apache.org</url>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>onejar-maven-plugin.googlecode.com</id>
+            <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <plugins>
             <plugin>
@@ -20,6 +27,35 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.youthnet.hibernat.embedded.derby.Derby</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.dstovall</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <mainClass>org.youthnet.hibernat.embedded.derby.Derby</mainClass>
+                            <onejarVersion>0.96</onejarVersion>
+                            <attachToBuild>true</attachToBuild>
+                            <classifier>onejar</classifier>
+                        </configuration>
+                        <goals>
+                            <goal>one-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -53,14 +89,14 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
+            <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -73,11 +109,6 @@
             <version>${persistence.version}</version>
         </dependency>
         <dependency>
-            <groupId>hibernate</groupId>
-            <artifactId>hibernate-tools</artifactId>
-            <version>${hibernate.tools.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
             <version>${derby.version}</version>
@@ -87,18 +118,34 @@
             <artifactId>commons-dbcp</artifactId>
             <version>${dbcp.version}</version>
         </dependency>
+
         <!-- Spring orm dependencies -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-annotations</artifactId>
             <version>${hibernate.annotations.version}</version>
+            <exclusions>
+                <exclusion> <!-- Exclude included slf4j-api dependency to allow chosen version -->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -106,10 +153,9 @@
         <spring.version>3.0.0.RELEASE</spring.version>
         <hibernate.version>3.2.7.ga</hibernate.version>
         <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
-        <hibernate.tools.version>3.2.3.GA</hibernate.tools.version>
         <persistence.version>1.0.2.GA</persistence.version>
         <derby.version>10.4.2.0</derby.version>
         <dbcp.version>1.4</dbcp.version>
-        <slf4j.version>1.4.2</slf4j.version>
+        <slf4j.version>1.5.11</slf4j.version>
     </properties>
 </project>

@@ -25,6 +25,12 @@
         <property name="dataSource" ref="derbyDataSource"/>
         <property name="packagesToScan" value="org.youthnet.hibernat.embedded.derby.domain"/>
         <property name="annotatedPackages" value="org.youthnet.hibernat.embedded.derby.domain"/>
+        <!-- Explicitly list domain classes so that they are seen within the onejar.  -->
+        <property name="annotatedClasses">
+            <list>
+                <value>org.youthnet.hibernat.embedded.derby.domain.TestTable</value>
+            </list>
+        </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -50,5 +56,9 @@
     </bean>
 
     <context:component-scan base-package="org.youthnet.hibernat.embedded.derby.dao.impl"/>
+
+    <!-- Explicitly list required beans so that they are seen within the onejar.  -->
+    <context:annotation-config/>
+    <bean id="testTableDao" class="org.youthnet.hibernat.embedded.derby.dao.impl.TestTableDaoDerby"/>
 
 </beans>
