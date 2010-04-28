@@ -1,0 +1,3 @@
+This is test implementation of Spring 3, Hibernate 3, and the Derby embedded database.
+
+It is basically the same as any other Spring, Hibernate, DB implementation except for the ";create=true" in the database url.
