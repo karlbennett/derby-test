@@ -1,0 +1,6 @@
+derby-test.iml
+derby-test.ipr
+derby-test.iws
+derby.log
+target/*
+derbydb/*
