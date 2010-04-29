@@ -23,8 +23,12 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="derbyDataSource"/>
-        <property name="packagesToScan" value="org.youthnet.hibernat.embedded.derby.domain"/>
-        <property name="annotatedPackages" value="org.youthnet.hibernat.embedded.derby.domain"/>
+        <!-- Explicitly list domain classes so that they are seen within the onejar.  -->
+        <property name="annotatedClasses">
+            <list>
+                <value>org.youthnet.hibernat.embedded.derby.domain.TestTable</value>
+            </list>
+        </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -49,6 +53,9 @@
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
 
-    <context:component-scan base-package="org.youthnet.hibernat.embedded.derby.dao.impl"/>
+    <!-- Explicitly list required beans so that they are seen within the onejar.  -->
+    <context:annotation-config/>
+    <bean id="testTableDao" class="org.youthnet.hibernat.embedded.derby.dao.impl.TestTableDaoDerby"/>
+    <bean id="argumentHandler" class="org.youthnet.hibernat.embedded.derby.util.ArgumentHandler"/>
 
 </beans>

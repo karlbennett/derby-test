@@ -10,14 +10,14 @@ import java.util.List;
 /**
  * Derby Test
  */
-public class Derby {
+public class DerbyOneJar {
 
     private static AbstractApplicationContext context;
 
     private static ArgumentHandler argumentHandler;
 
     public static void main(String[] args) {
-        context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        context = new ClassPathXmlApplicationContext("applicationContextOneJar.xml");
 
         List<String> arguments = Arrays.asList(args);
 
