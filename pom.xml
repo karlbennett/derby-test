@@ -157,5 +157,7 @@
         <derby.version>10.4.2.0</derby.version>
         <dbcp.version>1.4</dbcp.version>
         <slf4j.version>1.5.11</slf4j.version>
+
+        <id.column.definition>varchar(16) for bit data</id.column.definition>
     </properties>
 </project>

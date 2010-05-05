@@ -24,7 +24,7 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="derbyDataSource"/>
         <property name="packagesToScan" value="org.youthnet.hibernate.embedded.derby.domain"/>
-        <property name="annotatedPackages" value="org.youthnet.hibernate.embedded.derby.domain"/>
+        <property name="mappingResources" value="mapping.xml"/> 
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>

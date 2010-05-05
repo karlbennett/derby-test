@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+        version="1.0"> <!-- The XSD might be broken. It seems to want version to be set 1.0 not 2.0 -->
+
+    <package>org.youthnet.hibernate.embedded.derby.domain</package>
+
+    <entity class="GenericTable">
+        <inheritance strategy="TABLE_PER_CLASS"/>
+
+        <attributes>
+            <!-- Override the id configuration so that it will definitely work with Derby. -->
+            <id name="id">
+                <!-- Make sure that the column definition is correct -->
+                <column name="id" column-definition="varchar(16) for bit data"/>
+            </id>
+        </attributes>
+    </entity>
+
+</entity-mappings>

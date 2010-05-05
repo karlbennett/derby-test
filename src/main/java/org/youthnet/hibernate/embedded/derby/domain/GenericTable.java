@@ -15,6 +15,7 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public abstract class GenericTable {
+    
     @Id
     @Column(columnDefinition = "raw(16)")
     @Generated(GenerationTime.NEVER)
