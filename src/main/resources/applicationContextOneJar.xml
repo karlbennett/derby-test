@@ -29,6 +29,7 @@
                 <value>org.youthnet.hibernate.embedded.derby.domain.TestTable</value>
             </list>
         </property>
+        <property name="mappingResources" value="mapping.xml"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
