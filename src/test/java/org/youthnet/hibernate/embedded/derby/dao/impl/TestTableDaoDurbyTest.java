@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.youthnet.hibernate.embedded.derby.dao.TestTableDao;
 import org.youthnet.hibernate.embedded.derby.domain.TestTable;
-import org.youthnet.hibernate.embedded.derby.domain.types.UuidTypeDerby;
+import org.youthnet.hibernate.embedded.derby.domain.types.UuidTypeGeneric;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -43,11 +43,11 @@ public class TestTableDaoDurbyTest {
         testTable2 = new TestTable();
         testTable3 = new TestTable();
 
-        testTable1.setId(UuidTypeDerby.fromString("11111111-1111-1111-1111-111111111111"));
+        testTable1.setId(UuidTypeGeneric.fromString("11111111-1111-1111-1111-111111111111"));
         testTable1.setName("Test1");
-        testTable2.setId(UuidTypeDerby.fromString("22222222-2222-2222-2222-222222222222"));
+        testTable2.setId(UuidTypeGeneric.fromString("22222222-2222-2222-2222-222222222222"));
         testTable2.setName("Test2");
-        testTable3.setId(UuidTypeDerby.fromString("33333333-3333-3333-3333-333333333333"));
+        testTable3.setId(UuidTypeGeneric.fromString("33333333-3333-3333-3333-333333333333"));
         testTable3.setName("Test3");
 
         jdbcTemplate = new JdbcTemplate(derbyDataSource);

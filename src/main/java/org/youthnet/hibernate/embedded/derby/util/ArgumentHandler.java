@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.youthnet.hibernate.embedded.derby.dao.TestTableDao;
 import org.youthnet.hibernate.embedded.derby.domain.TestTable;
-import org.youthnet.hibernate.embedded.derby.domain.types.UuidTypeDerby;
+import org.youthnet.hibernate.embedded.derby.domain.types.UuidTypeGeneric;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -44,7 +44,7 @@ public class ArgumentHandler {
                     String[] nameArray = names.split(",");
                     for (String name : nameArray) {
                         testTable = new TestTable();
-                        testTable.setId(new UuidTypeDerby(UUID.randomUUID()));
+                        testTable.setId(new UuidTypeGeneric(UUID.randomUUID()));
                         testTable.setName(name);
                         System.out.println("Adding Row:");
                         testTableDao.create(testTable);
@@ -62,7 +62,7 @@ public class ArgumentHandler {
                     String[] idArray = ids.split(",");
                     for (String id : idArray) {
                         System.out.println("Requesting Row:");
-                        Printer.printRow(testTableDao.request(UuidTypeDerby.fromString(id)));
+                        Printer.printRow(testTableDao.request(UuidTypeGeneric.fromString(id)));
                     }
                 }
             }
@@ -73,7 +73,7 @@ public class ArgumentHandler {
             if (arguments.size() > ++addIndex) {
                 String[] updateArray = arguments.get(addIndex).split(",");
                 if (updateArray.length == 2) {
-                    testTable.setId(UuidTypeDerby.fromString(updateArray[0]));
+                    testTable.setId(UuidTypeGeneric.fromString(updateArray[0]));
                     testTable.setName(updateArray[1]);
                     System.out.println("Updating Row:");
                     Printer.printRow(testTableDao.request(testTable.getId()));
@@ -92,7 +92,7 @@ public class ArgumentHandler {
                     String[] idArray = ids.split(",");
                     for (String id : idArray) {
                         System.out.println("Deleting Row:");
-                        testTable = testTableDao.delete(UuidTypeDerby.fromString(id));
+                        testTable = testTableDao.delete(UuidTypeGeneric.fromString(id));
                         Printer.printRow(testTable);
                     }
                 }

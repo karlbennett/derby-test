@@ -20,15 +20,15 @@ import java.util.UUID;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @javax.xml.bind.annotation.XmlRootElement
-public class UuidTypeDerby implements UuidType {
+public class UuidTypeGeneric implements UuidType {
 
     private UUID uuid;
 
-    public UuidTypeDerby() {
+    public UuidTypeGeneric() {
         super();
     }
 
-    public UuidTypeDerby(UUID uuid) {
+    public UuidTypeGeneric(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -40,7 +40,7 @@ public class UuidTypeDerby implements UuidType {
         return uuid;
     }
 
-    private static final String CAST_EXCEPTION_TEXT = " cannot be cast to a org.youthnet.vbase.dao.custom.UuidTypeDerby.";
+    private static final String CAST_EXCEPTION_TEXT = " cannot be cast to a org.youthnet.vbase.dao.custom.UuidTypeGeneric.";
 
     /*
 	 * (non-Javadoc)
@@ -59,7 +59,7 @@ public class UuidTypeDerby implements UuidType {
 	 */
     @Override
     public Class returnedClass() {
-        return UuidTypeDerby.class;
+        return UuidTypeGeneric.class;
     }
 
     /*
@@ -75,14 +75,14 @@ public class UuidTypeDerby implements UuidType {
         } else if (x == null || y == null) {
             return false;
         }
-        if (!UuidTypeDerby.class.isAssignableFrom(x.getClass())) {
+        if (!UuidTypeGeneric.class.isAssignableFrom(x.getClass())) {
             throw new HibernateException(x.getClass().toString() + CAST_EXCEPTION_TEXT);
-        } else if (!UuidTypeDerby.class.isAssignableFrom(y.getClass())) {
+        } else if (!UuidTypeGeneric.class.isAssignableFrom(y.getClass())) {
             throw new HibernateException(y.getClass().toString() + CAST_EXCEPTION_TEXT);
         }
 
-        UUID a = ((UuidTypeDerby) x).getUuid();
-        UUID b = ((UuidTypeDerby) y).getUuid();
+        UUID a = ((UuidTypeGeneric) x).getUuid();
+        UUID b = ((UuidTypeGeneric) y).getUuid();
 
         return a.equals(b);
     }
@@ -94,10 +94,10 @@ public class UuidTypeDerby implements UuidType {
 	 */
     @Override
     public int hashCode(Object x) throws HibernateException {
-        if (!UuidTypeDerby.class.isAssignableFrom(x.getClass())) {
+        if (!UuidTypeGeneric.class.isAssignableFrom(x.getClass())) {
             throw new HibernateException(x.getClass().toString() + CAST_EXCEPTION_TEXT);
         }
-        UUID uuid = ((UuidTypeDerby) x).getUuid();
+        UUID uuid = ((UuidTypeGeneric) x).getUuid();
         return uuid.hashCode();
     }
 
@@ -114,7 +114,7 @@ public class UuidTypeDerby implements UuidType {
         if (value == null) {
             return null;
         } else {
-            return new UuidTypeDerby(UuidConverter.convertByteArrayToUuid((byte[])value));
+            return new UuidTypeGeneric(UuidConverter.convertByteArrayToUuid((byte[])value));
         }
     }
 
@@ -131,11 +131,11 @@ public class UuidTypeDerby implements UuidType {
             return;
         }
 
-        if (!UuidTypeDerby.class.isAssignableFrom(value.getClass())) {
+        if (!UuidTypeGeneric.class.isAssignableFrom(value.getClass())) {
             throw new HibernateException(value.getClass().toString() + " with value " + value.toString() + CAST_EXCEPTION_TEXT);
         }
 
-        preparedStatement.setObject(index, UuidConverter.convertUuidArrayToByteArray(((UuidTypeDerby) value).getUuid()));
+        preparedStatement.setObject(index, UuidConverter.convertUuidArrayToByteArray(((UuidTypeGeneric) value).getUuid()));
 
     }
 
@@ -146,7 +146,7 @@ public class UuidTypeDerby implements UuidType {
 	 */
     @Override
     public Object deepCopy(Object value) throws HibernateException {
-        return (UuidTypeDerby) value;
+        return (UuidTypeGeneric) value;
     }
 
     /*
@@ -213,8 +213,8 @@ public class UuidTypeDerby implements UuidType {
 
     @Override
     public boolean equals(Object object) {
-        if(object instanceof UuidTypeDerby) {
-            UuidTypeDerby uuidCompare = (UuidTypeDerby) object;
+        if(object instanceof UuidTypeGeneric) {
+            UuidTypeGeneric uuidCompare = (UuidTypeGeneric) object;
             if(this.uuid.equals(uuidCompare.getUuid())) {
                 return true;
             }
@@ -236,8 +236,8 @@ public class UuidTypeDerby implements UuidType {
      * @param uuidString string UUID
      * @return UuidUserType
      */
-    public static UuidTypeDerby fromString(String uuidString) {
-        return new UuidTypeDerby(UUID.fromString(uuidString));
+    public static UuidTypeGeneric fromString(String uuidString) {
+        return new UuidTypeGeneric(UUID.fromString(uuidString));
     }
 
 }
