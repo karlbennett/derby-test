@@ -1,8 +1,8 @@
-package org.youthnet.hibernat.embedded.derby;
+package org.youthnet.hibernate.embedded.derby;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.youthnet.hibernat.embedded.derby.util.ArgumentHandler;
+import org.youthnet.hibernate.embedded.derby.util.ArgumentHandler;
 
 import java.util.Arrays;
 import java.util.List;

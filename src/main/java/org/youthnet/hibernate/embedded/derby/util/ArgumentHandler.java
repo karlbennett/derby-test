@@ -1,14 +1,16 @@
-package org.youthnet.hibernat.embedded.derby.util;
+package org.youthnet.hibernate.embedded.derby.util;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import org.youthnet.hibernat.embedded.derby.dao.TestTableDao;
-import org.youthnet.hibernat.embedded.derby.domain.TestTable;
+import org.youthnet.hibernate.embedded.derby.dao.TestTableDao;
+import org.youthnet.hibernate.embedded.derby.domain.TestTable;
+import org.youthnet.hibernate.embedded.derby.domain.types.UuidTypeDerby;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * User: karl
@@ -42,6 +44,7 @@ public class ArgumentHandler {
                     String[] nameArray = names.split(",");
                     for (String name : nameArray) {
                         testTable = new TestTable();
+                        testTable.setId(new UuidTypeDerby(UUID.randomUUID()));
                         testTable.setName(name);
                         System.out.println("Adding Row:");
                         testTableDao.create(testTable);
@@ -59,7 +62,7 @@ public class ArgumentHandler {
                     String[] idArray = ids.split(",");
                     for (String id : idArray) {
                         System.out.println("Requesting Row:");
-                        Printer.printRow(testTableDao.request(Integer.parseInt(id)));
+                        Printer.printRow(testTableDao.request(UuidTypeDerby.fromString(id)));
                     }
                 }
             }
@@ -70,7 +73,7 @@ public class ArgumentHandler {
             if (arguments.size() > ++addIndex) {
                 String[] updateArray = arguments.get(addIndex).split(",");
                 if (updateArray.length == 2) {
-                    testTable.setId(Integer.parseInt(updateArray[0]));
+                    testTable.setId(UuidTypeDerby.fromString(updateArray[0]));
                     testTable.setName(updateArray[1]);
                     System.out.println("Updating Row:");
                     Printer.printRow(testTableDao.request(testTable.getId()));
@@ -89,7 +92,7 @@ public class ArgumentHandler {
                     String[] idArray = ids.split(",");
                     for (String id : idArray) {
                         System.out.println("Deleting Row:");
-                        testTable = testTableDao.delete(Integer.parseInt(id));
+                        testTable = testTableDao.delete(UuidTypeDerby.fromString(id));
                         Printer.printRow(testTable);
                     }
                 }

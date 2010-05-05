@@ -1,11 +1,11 @@
-package org.youthnet.hibernat.embedded.derby.dao.impl;
+package org.youthnet.hibernate.embedded.derby.dao.impl;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
-import org.youthnet.hibernat.embedded.derby.dao.GenericDao;
-import org.youthnet.hibernat.embedded.derby.domain.GenericTable;
+import org.youthnet.hibernate.embedded.derby.dao.GenericDao;
+import org.youthnet.hibernate.embedded.derby.domain.GenericTable;
 
 import javax.annotation.Resource;
 import java.util.List;

@@ -1,6 +1,6 @@
-package org.youthnet.hibernat.embedded.derby.dao;
+package org.youthnet.hibernate.embedded.derby.dao;
 
-import org.youthnet.hibernat.embedded.derby.domain.GenericTable;
+import org.youthnet.hibernate.embedded.derby.domain.GenericTable;
 
 import java.util.List;
 

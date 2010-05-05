@@ -1,4 +1,4 @@
-package org.youthnet.hibernat.embedded.derby.domain;
+package org.youthnet.hibernate.embedded.derby.domain;
 
 import javax.persistence.*;
 
@@ -12,6 +12,8 @@ public class TestTable extends GenericTable {
 
     @Column
     private String name;
+    @Column
+    private byte[] data;
 
     public String getName() {
         return name;
@@ -19,5 +21,13 @@ public class TestTable extends GenericTable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 }

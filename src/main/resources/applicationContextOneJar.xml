@@ -26,7 +26,7 @@
         <!-- Explicitly list domain classes so that they are seen within the onejar.  -->
         <property name="annotatedClasses">
             <list>
-                <value>org.youthnet.hibernat.embedded.derby.domain.TestTable</value>
+                <value>org.youthnet.hibernate.embedded.derby.domain.TestTable</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -55,7 +55,7 @@
 
     <!-- Explicitly list required beans so that they are seen within the onejar.  -->
     <context:annotation-config/>
-    <bean id="testTableDao" class="org.youthnet.hibernat.embedded.derby.dao.impl.TestTableDaoDerby"/>
-    <bean id="argumentHandler" class="org.youthnet.hibernat.embedded.derby.util.ArgumentHandler"/>
+    <bean id="testTableDao" class="org.youthnet.hibernate.embedded.derby.dao.impl.TestTableDaoDerby"/>
+    <bean id="argumentHandler" class="org.youthnet.hibernate.embedded.derby.util.ArgumentHandler"/>
 
 </beans>

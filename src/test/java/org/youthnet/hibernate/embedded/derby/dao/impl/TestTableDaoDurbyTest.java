@@ -1,4 +1,4 @@
-package org.youthnet.hibernat.embedded.derby.dao.impl;
+package org.youthnet.hibernate.embedded.derby.dao.impl;
 
 import static junit.framework.Assert.*;
 
@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.youthnet.hibernat.embedded.derby.dao.TestTableDao;
-import org.youthnet.hibernat.embedded.derby.domain.TestTable;
+import org.youthnet.hibernate.embedded.derby.dao.TestTableDao;
+import org.youthnet.hibernate.embedded.derby.domain.TestTable;
+import org.youthnet.hibernate.embedded.derby.domain.types.UuidTypeDerby;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -42,8 +43,11 @@ public class TestTableDaoDurbyTest {
         testTable2 = new TestTable();
         testTable3 = new TestTable();
 
+        testTable1.setId(UuidTypeDerby.fromString("11111111-1111-1111-1111-111111111111"));
         testTable1.setName("Test1");
+        testTable2.setId(UuidTypeDerby.fromString("22222222-2222-2222-2222-222222222222"));
         testTable2.setName("Test2");
+        testTable3.setId(UuidTypeDerby.fromString("33333333-3333-3333-3333-333333333333"));
         testTable3.setName("Test3");
 
         jdbcTemplate = new JdbcTemplate(derbyDataSource);
@@ -58,7 +62,7 @@ public class TestTableDaoDurbyTest {
     public void testCreate() throws Exception {
         testTableDao.create(testTable1);
 
-        String name = jdbcTemplate.queryForObject("SELECT name FROM test_table WHERE id = " + testTable1.getId(), String.class);
+        String name = jdbcTemplate.queryForObject("SELECT name FROM test_table WHERE id = (X'" + testTable1.getId().getUuid().toString().replace("-","") + "')", String.class);
 
         assertEquals("test name value exists", "Test1", name);
     }
@@ -91,7 +95,7 @@ public class TestTableDaoDurbyTest {
     public void testUpdate() throws Exception {
         testTableDao.create(testTable1);
 
-        String name = jdbcTemplate.queryForObject("SELECT name FROM test_table WHERE id = " + testTable1.getId(), String.class);
+        String name = jdbcTemplate.queryForObject("SELECT name FROM test_table WHERE id = (X'" + testTable1.getId().getUuid().toString().replace("-","") + "')", String.class);
 
         assertEquals("test old name", "Test1", name);
 
@@ -100,7 +104,7 @@ public class TestTableDaoDurbyTest {
 
         testTableDao.update(testTable);
 
-        name = jdbcTemplate.queryForObject("SELECT name FROM test_table WHERE id = " + testTable1.getId(), String.class);
+        name = jdbcTemplate.queryForObject("SELECT name FROM test_table WHERE id = (X'" + testTable1.getId().getUuid().toString().replace("-","") + "')", String.class);
 
         assertEquals("test new name", "New Test", name);
     }

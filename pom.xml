@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.youthnet.hibernat.embedded.derby.Derby</mainClass>
+                            <mainClass>org.youthnet.hibernate.embedded.derby.Derby</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -46,7 +46,7 @@
                 <executions>
                     <execution>
                         <configuration>
-                            <mainClass>org.youthnet.hibernat.embedded.derby.DerbyOneJar</mainClass>
+                            <mainClass>org.youthnet.hibernate.embedded.derby.DerbyOneJar</mainClass>
                             <onejarVersion>0.96</onejarVersion>
                             <attachToBuild>true</attachToBuild>
                             <classifier>onejar</classifier>

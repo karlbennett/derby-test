@@ -1,4 +1,4 @@
-package org.youthnet.hibernat.embedded.derby;
+package org.youthnet.hibernate.embedded.derby;
 
 
 import static junit.framework.Assert.*;
@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.youthnet.hibernat.embedded.derby.dao.TestTableDao;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -49,15 +48,23 @@ public class DerbyTest {
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(
                 "SELECT * FROM sys.systables WHERE tablename = 'TEST_TABLE'");
 
+//        printRows(rows);
+
         assertTrue("a table exists", 0 < rows.size());
         assertEquals("table is test table", "TEST_TABLE", rows.get(0).get("TABLENAME"));
+
+//        rows = jdbcTemplate.queryForList(
+//                "SELECT * FROM sys.syscolumns WHERE " +
+//                        "referenceid = (SELECT tableid FROM sys.systables WHERE tablename = 'TEST_TABLE')");
+//
+//        printRows(rows);
     }
 
     private void printRows(List<Map<String, Object>> rows) {
         for (Map<String, Object> row : rows) {
             String[] columnNames = row.keySet().toArray(new String[0]);
             for (String columnName : columnNames) {
-                System.out.println(" Column: " + columnName + " Value: " + row.get(columnName));
+                System.out.println(String.format("Column: %1$-30s Value: %2$s", columnName, row.get(columnName)));
             }
             System.out.println("-----------------------------------------------------------------");
         }
