@@ -50,6 +50,12 @@ public class DerbyTest {
 
 //        printRows(rows);
 
+        List<String> tableNames = jdbcTemplate.queryForList(
+                "SELECT tablename FROM sys.systables WHERE tablename <> 'GENERICTABLE' AND tablename NOT LIKE 'SYS%'", String.class);
+        for(String name : tableNames) {
+            System.out.println(name);   
+        }
+
         assertTrue("a table exists", 0 < rows.size());
         assertEquals("table is test table", "TEST_TABLE", rows.get(0).get("TABLENAME"));
 
